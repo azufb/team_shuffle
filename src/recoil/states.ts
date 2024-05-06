@@ -1,9 +1,15 @@
 import { atom, selector } from "recoil";
 
-const teamMembersAtom = atom<string[]>({
+export const teamMembersAtom = atom<string[]>({
   key: "teamMembers",
   default: [],
 });
+
+// ランダム
+// const randomFunc = (length: number): number => {
+//   const result: number = Math.floor(Math.random() * length);
+//   return result;
+// };
 
 export const addMembersSelector = selector<string[]>({
   key: "addMembersSelector",
@@ -14,3 +20,16 @@ export const addMembersSelector = selector<string[]>({
     set(teamMembersAtom, memberNames);
   },
 });
+
+// export const shuffleSelector = selector({
+//   key: "shuffleSelector",
+//   get: ({ get }) => {
+//     return get(teamMembersAtom);
+//   },
+//   set: ({ get }) => {
+//     // const allMembers: string[] = get(teamMembersAtom);
+//     // const allMembersCount: number = allMembers.length;
+//     // const randomResult: number = randomFunc(allMembersCount);
+//     // const member: string = allMembers[randomResult];
+//   },
+// });
