@@ -2,10 +2,10 @@ type PropsType = {
   teams: string[][];
 };
 
-export const List = ({ teams }: PropsType) => {
+export const ShuffleResult = ({ teams }: PropsType) => {
   return (
     <div>
-      <h2>チームリスト</h2>
+      <h2>シャッフル結果</h2>
       <div>
         {teams.map((team) => (
           <table>

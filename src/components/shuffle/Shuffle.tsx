@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { List } from "../list/List";
+import { ShuffleResult } from "./ShuffleResult";
 
 export const Shuffle = () => {
   const [membersCount, setMembersCount] = useState<string>("0");
@@ -68,7 +68,7 @@ export const Shuffle = () => {
         <button onClick={handleShuffle}>Shuffle</button>
       </div>
 
-      <List teams={teamsInfo} />
+      <ShuffleResult teams={teamsInfo} />
     </div>
   );
 };
