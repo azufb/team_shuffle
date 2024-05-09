@@ -5,8 +5,9 @@ export const Shuffle = () => {
   const [membersCount, setMembersCount] = useState<string>("0");
   const [teamsInfo, setTeamsInfo] = useState<string[][]>([]);
   const allMembersJson = localStorage.getItem("allMembers");
-  const allMembers: string[] =
-    allMembersJson != null ? JSON.parse(allMembersJson) : [];
+  const [allMembers, setAllMembers] = useState<string[]>(
+    allMembersJson != null ? JSON.parse(allMembersJson) : []
+  );
 
   const handleShuffle = () => {
     let slicedMembers: string[] = allMembers.slice();
@@ -30,6 +31,7 @@ export const Shuffle = () => {
 
   const deleteData = () => {
     localStorage.removeItem("allMembers");
+    setAllMembers([]);
   };
 
   return (
