@@ -60,7 +60,9 @@ export const Shuffle = () => {
         <input
           type="number"
           onChange={(e) => setMembersCount(e.target.value)}
+          className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline"
         />
+        <span>人</span>
       </div>
 
       <button onClick={deleteData}>データ削除</button>

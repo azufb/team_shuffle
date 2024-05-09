@@ -39,7 +39,10 @@ export const RegisterForm = () => {
           <div key={field.id}>
             <label>名前_{index + 1}</label>
             <div>
-              <input {...register(`members.${index}.memberName`)} />
+              <input
+                {...register(`members.${index}.memberName`)}
+                className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline"
+              />
               <button type="button" onClick={() => remove(index)}>
                 削除
               </button>
