@@ -1,6 +1,4 @@
 import { useFieldArray, useForm } from "react-hook-form";
-import { useSetRecoilState } from "recoil";
-import { addMembersSelector } from "../../recoil/states";
 
 type FormValuesType = {
   members: {
@@ -18,10 +16,12 @@ export const RegisterForm = () => {
     control,
     name: "members",
   });
-  const setMembers = useSetRecoilState(addMembersSelector);
 
   const onSubmit = (data: FormValuesType): void => {
-    setMembers(data.members.map((member) => member.memberName));
+    const jsonArray: string = JSON.stringify(
+      data.members.map((member) => member.memberName)
+    );
+    localStorage.setItem("allMembers", jsonArray);
 
     reset();
   };
