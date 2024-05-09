@@ -28,6 +28,10 @@ export const Shuffle = () => {
     setTeamsInfo(teams);
   };
 
+  const deleteData = () => {
+    localStorage.removeItem("allMembers");
+  };
+
   return (
     <div>
       <div>
@@ -55,6 +59,8 @@ export const Shuffle = () => {
           onChange={(e) => setMembersCount(e.target.value)}
         />
       </div>
+
+      <button onClick={deleteData}>データ削除</button>
 
       <div>
         <button onClick={handleShuffle}>Shuffle</button>
