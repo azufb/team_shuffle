@@ -1,4 +1,5 @@
 import { useFieldArray, useForm } from "react-hook-form";
+import { LOCAL_STORAGE_ALL_MEMBERS_KEY } from "../../CONST";
 
 type FormValuesType = {
   members: {
@@ -21,7 +22,7 @@ export const RegisterForm = () => {
     const jsonArray: string = JSON.stringify(
       data.members.map((member) => member.memberName)
     );
-    localStorage.setItem("allMembers", jsonArray);
+    localStorage.setItem(LOCAL_STORAGE_ALL_MEMBERS_KEY, jsonArray);
 
     reset();
   };

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { ShuffleResult } from "./ShuffleResult";
+import { LOCAL_STORAGE_ALL_MEMBERS_KEY } from "../../CONST";
 
 export const Shuffle = () => {
   const [membersCount, setMembersCount] = useState<string>("0");
   const [teamsInfo, setTeamsInfo] = useState<string[][]>([]);
-  const allMembersJson = localStorage.getItem("allMembers");
+  const allMembersJson = localStorage.getItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
   const [allMembers, setAllMembers] = useState<string[]>(
     allMembersJson != null ? JSON.parse(allMembersJson) : []
   );
@@ -30,7 +31,7 @@ export const Shuffle = () => {
   };
 
   const deleteData = () => {
-    localStorage.removeItem("allMembers");
+    localStorage.removeItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
     setAllMembers([]);
   };
 
