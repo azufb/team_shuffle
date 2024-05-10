@@ -43,6 +43,7 @@ export const Shuffle = () => {
   const deleteData = () => {
     localStorage.removeItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
     setAllMembers([]);
+    setMembersCount("0");
   };
 
   const handleChangeIsInclude = (targetIndex: number) => {
@@ -93,6 +94,7 @@ export const Shuffle = () => {
         <label>1チームの人数</label>
         <input
           type="number"
+          value={membersCount}
           onChange={(e) => setMembersCount(e.target.value)}
           className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline"
         />
