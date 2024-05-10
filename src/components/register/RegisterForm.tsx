@@ -20,7 +20,9 @@ export const RegisterForm = () => {
 
   const onSubmit = (data: FormValuesType): void => {
     const jsonArray: string = JSON.stringify(
-      data.members.map((member) => member.memberName)
+      data.members.map((member, index) => {
+        return { id: index, memberName: member.memberName, isInclude: true };
+      })
     );
     localStorage.setItem(LOCAL_STORAGE_ALL_MEMBERS_KEY, jsonArray);
 
@@ -33,17 +35,21 @@ export const RegisterForm = () => {
 
   return (
     <div>
-      <h2>メンバー登録</h2>
+      <h2 className="text-white">メンバー登録</h2>
       <form>
         {fields.map((field, index) => (
           <div key={field.id}>
-            <label>名前_{index + 1}</label>
+            <label className="text-white">名前_{index + 1}</label>
             <div>
               <input
                 {...register(`members.${index}.memberName`)}
                 className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline"
               />
-              <button type="button" onClick={() => remove(index)}>
+              <button
+                type="button"
+                onClick={() => remove(index)}
+                className="primary"
+              >
                 削除
               </button>
             </div>

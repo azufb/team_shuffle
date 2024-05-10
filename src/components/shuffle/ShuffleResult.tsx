@@ -1,5 +1,7 @@
+import { MemberInfoType } from "./Shuffle";
+
 type PropsType = {
-  teams: string[][];
+  teams: MemberInfoType[][];
 };
 
 export const ShuffleResult = ({ teams }: PropsType) => {
@@ -17,9 +19,9 @@ export const ShuffleResult = ({ teams }: PropsType) => {
             </thead>
             <tbody>
               {team.map((member, index) => (
-                <tr>
-                  <td>{index}</td>
-                  <td>{member}</td>
+                <tr key={index}>
+                  <td>{member.id}</td>
+                  <td>{member.memberName}</td>
                 </tr>
               ))}
             </tbody>

@@ -2,21 +2,29 @@ import { useState } from "react";
 import { ShuffleResult } from "./ShuffleResult";
 import { LOCAL_STORAGE_ALL_MEMBERS_KEY } from "../../CONST";
 
+export type MemberInfoType = {
+  id: number;
+  memberName: string;
+  isInclude: boolean;
+};
+
 export const Shuffle = () => {
   const [membersCount, setMembersCount] = useState<string>("0");
-  const [teamsInfo, setTeamsInfo] = useState<string[][]>([]);
+  const [teamsInfo, setTeamsInfo] = useState<MemberInfoType[][]>([]);
   const allMembersJson = localStorage.getItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
-  const [allMembers, setAllMembers] = useState<string[]>(
+  const [allMembers, setAllMembers] = useState<MemberInfoType[]>(
     allMembersJson != null ? JSON.parse(allMembersJson) : []
   );
 
   const handleShuffle = () => {
-    let slicedMembers: string[] = allMembers.slice();
+    let slicedMembers: MemberInfoType[] = allMembers.slice();
+    // isIncludeがfalseのものは省く
+    slicedMembers = slicedMembers.filter((member) => member.isInclude === true);
     const teamsCount: number = allMembers.length / Number(membersCount);
-    let teams: string[][] = [];
+    let teams: MemberInfoType[][] = [];
 
     for (let i = 0; i < teamsCount; i++) {
-      let members: string[] = [];
+      let members: MemberInfoType[] = [];
       for (let j = 0; j < Number(membersCount); j++) {
         const result: number = Math.floor(Math.random() * slicedMembers.length);
         members = [...members, slicedMembers[result]];
@@ -24,6 +32,8 @@ export const Shuffle = () => {
           (member) => member !== slicedMembers[result]
         );
       }
+
+      members = members.filter((member) => member !== undefined);
 
       teams = [...teams, members];
     }
@@ -35,6 +45,22 @@ export const Shuffle = () => {
     setAllMembers([]);
   };
 
+  const handleChangeIsInclude = (targetIndex: number) => {
+    const before = allMembers.slice(0, targetIndex);
+    const after = allMembers.slice(targetIndex + 1);
+    const updated: MemberInfoType[] = [
+      ...before,
+      {
+        ...allMembers[targetIndex],
+        isInclude: !allMembers[targetIndex].isInclude,
+      },
+      ...after,
+    ];
+    setAllMembers(updated);
+    const jsonUpdated = JSON.stringify(updated);
+    localStorage.setItem(LOCAL_STORAGE_ALL_MEMBERS_KEY, jsonUpdated);
+  };
+
   return (
     <div>
       <div>
@@ -43,13 +69,21 @@ export const Shuffle = () => {
             <tr>
               <th>No.</th>
               <th>名前</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             {allMembers.map((member, index) => (
               <tr key={index}>
-                <td>{index}</td>
-                <td>{member}</td>
+                <td>{member.id}</td>
+                <td>{member.memberName}</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={member.isInclude}
+                    onChange={() => handleChangeIsInclude(index)}
+                  />
+                </td>
               </tr>
             ))}
           </tbody>
