@@ -9,6 +9,9 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
+      devOptions: {
+        enabled: true,
+      },
       manifest: {
         name: "チームシャッフル",
         short_name: "チームシャッフル",
