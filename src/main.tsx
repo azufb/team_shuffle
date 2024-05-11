@@ -4,10 +4,9 @@ import App from "./App.tsx";
 import "./index.css";
 import "tailwindcss/tailwind.css";
 import { BrowserRouter } from "react-router-dom";
+import * as serviceWorkerRegistration from "../serviceWorkerRegistration.ts";
 
-// service workerの登録
-import { registerSW } from "virtual:pwa-register";
-registerSW();
+serviceWorkerRegistration.register();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
