@@ -9,7 +9,7 @@ export type MemberInfoType = {
 };
 
 export const Shuffle = () => {
-  const [membersCount, setMembersCount] = useState<string>("0");
+  const [membersCount, setMembersCount] = useState<string>("1");
   const [teamsInfo, setTeamsInfo] = useState<MemberInfoType[][]>([]);
   const allMembersJson = localStorage.getItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
   const [allMembers, setAllMembers] = useState<MemberInfoType[]>(
