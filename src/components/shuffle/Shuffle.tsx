@@ -102,7 +102,7 @@ export const Shuffle = () => {
 
       <div className="flex flex-col gap-4">
         <div className="flex gap-2 items-center">
-          <label className="text-white">1チームの人数</label>
+          <label className="text-white">1チーム</label>
           <div className="flex gap-2 items-end">
             <input
               type="number"

@@ -53,12 +53,12 @@ export const RegisterForm = () => {
               {fields.map((field, index) => (
                 <div key={field.id} className="flex gap-2 items-center">
                   <label htmlFor={`member_${index}`} className="text-white">
-                    メンバー{index + 1}
+                    {index + 1}
                   </label>
                   <input
                     id={`member_${index}`}
                     {...register(`members.${index}.memberName`)}
-                    className="px-1 py-1.5 text-sm rounded-md"
+                    className="w-full px-1 py-1.5 text-sm rounded-md"
                   />
                   <button
                     type="button"
