@@ -4,9 +4,6 @@ import App from "./App.tsx";
 import "./index.css";
 import "tailwindcss/tailwind.css";
 import { BrowserRouter } from "react-router-dom";
-import * as serviceWorkerRegistration from "../serviceWorkerRegistration.ts";
-
-serviceWorkerRegistration.register();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
