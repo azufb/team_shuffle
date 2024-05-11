@@ -87,6 +87,7 @@ export const Shuffle = () => {
               ),
             };
           })}
+          caption="※チェックを外すと、シャッフル対象から除外できます"
         />
       </div>
       <div>
