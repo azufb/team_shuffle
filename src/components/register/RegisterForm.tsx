@@ -31,7 +31,10 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = (data: FormValuesType): void => {
-    const registerData: MemberInfoType[] = data.members.map((member, index) => {
+    const inputData: InputType[] = data.members.filter(
+      (member) => member.memberName !== ""
+    );
+    const registerData: MemberInfoType[] = inputData.map((member, index) => {
       return { id: index + 1, memberName: member.memberName, isInclude: true };
     });
     const jsonArray: string = JSON.stringify(registerData);
