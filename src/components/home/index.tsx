@@ -7,6 +7,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons/faTrashCan";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "../buttons/Button";
 
 export const Home = () => {
   const navigate: NavigateFunction = useNavigate();
@@ -36,36 +37,42 @@ export const Home = () => {
             <br />
             まずは、メンバーを登録してください。
           </p>
-          <button
+          <Button
             type="button"
             onClick={() => navigatePage(pathsObj.register)}
             className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
           >
-            <span>メンバー登録</span>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </button>
+            <>
+              <span>メンバー登録</span>
+              <FontAwesomeIcon icon={faAngleRight} />
+            </>
+          </Button>
         </div>
       ) : (
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <MembersList allMembers={allMemebers} />
-            <button
+            <Button
               onClick={deleteData}
               className="flex gap-2 justify-center items-center bg-red rounded-md text-white"
             >
-              <FontAwesomeIcon icon={faTrashCan} />
-              <span>データ削除</span>
-            </button>
+              <>
+                <FontAwesomeIcon icon={faTrashCan} />
+                <span>データ削除</span>
+              </>
+            </Button>
           </div>
 
-          <button
+          <Button
             type="button"
             onClick={() => navigatePage(pathsObj.shuffle)}
             className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
           >
-            <span>シャッフルする</span>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </button>
+            <>
+              <span>シャッフルする</span>
+              <FontAwesomeIcon icon={faAngleRight} />
+            </>
+          </Button>
         </div>
       )}
     </div>

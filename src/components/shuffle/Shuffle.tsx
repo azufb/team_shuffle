@@ -8,6 +8,7 @@ import { Table } from "../table";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons/faTrashCan";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShuffle } from "@fortawesome/free-solid-svg-icons/faShuffle";
+import { Button } from "../buttons/Button";
 
 export type MemberInfoType = {
   id: number;
@@ -91,13 +92,15 @@ export const Shuffle = () => {
           caption="※チェックを外すと、シャッフル対象から除外できます"
         />
 
-        <button
+        <Button
           onClick={deleteData}
           className="flex gap-2 justify-center items-center bg-red rounded-md text-white"
         >
-          <FontAwesomeIcon icon={faTrashCan} />
-          <span>データ削除</span>
-        </button>
+          <>
+            <FontAwesomeIcon icon={faTrashCan} />
+            <span>データ削除</span>
+          </>
+        </Button>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -114,13 +117,12 @@ export const Shuffle = () => {
           </div>
         </div>
 
-        <button
-          onClick={handleShuffle}
-          className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
-        >
-          <FontAwesomeIcon icon={faShuffle} />
-          <span>シャッフル</span>
-        </button>
+        <Button onClick={handleShuffle} className=" bg-blue">
+          <>
+            <FontAwesomeIcon icon={faShuffle} />
+            <span>シャッフル</span>
+          </>
+        </Button>
       </div>
 
       {teamsInfo.length >= 1 && <ShuffleResult teams={teamsInfo} />}

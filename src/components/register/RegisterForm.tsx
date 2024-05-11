@@ -7,6 +7,7 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons/faUserPlus";
 import { MemberInfoType } from "../shuffle/Shuffle";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { pathsObj } from "../../pathsObj";
+import { Button } from "../buttons/Button";
 
 type InputType = {
   memberName: string;
@@ -60,34 +61,38 @@ export const RegisterForm = () => {
                     {...register(`members.${index}.memberName`)}
                     className="w-full px-1 py-1.5 text-sm rounded-md"
                   />
-                  <button
+                  <Button
                     type="button"
                     onClick={() => remove(index)}
                     className="primary"
                   >
                     <FontAwesomeIcon icon={faXmark} className="text-red" />
-                  </button>
+                  </Button>
                 </div>
               ))}
             </div>
-            <button
+            <Button
               type="button"
               onClick={() => append(initialMemberInput)}
               className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
             >
-              <FontAwesomeIcon icon={faPlus} />
-              <span>メンバーを追加</span>
-            </button>
+              <>
+                <FontAwesomeIcon icon={faPlus} />
+                <span>メンバーを追加</span>
+              </>
+            </Button>
           </div>
 
-          <button
+          <Button
             type="submit"
             onClick={() => onSubmit}
             className="flex gap-2 justify-center items-center bg-green rounded-md text-white"
           >
-            <FontAwesomeIcon icon={faUserPlus} />
-            <span>登録</span>
-          </button>
+            <>
+              <FontAwesomeIcon icon={faUserPlus} />
+              <span>登録</span>
+            </>
+          </Button>
         </form>
       </div>
     </div>
