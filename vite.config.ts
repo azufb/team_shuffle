@@ -8,14 +8,11 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      devOptions: {
-        enabled: false,
-      },
       injectRegister: "auto",
       manifest: {
-        name: "My App",
-        short_name: "My App",
-        description: "My App",
+        name: "チームシャッフル",
+        short_name: "チームシャッフル",
+        description: "チームシャッフル",
         start_url: "index.html",
         display: "standalone",
         orientation: "portrait",
