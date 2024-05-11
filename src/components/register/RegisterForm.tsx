@@ -1,5 +1,9 @@
 import { useFieldArray, useForm } from "react-hook-form";
 import { LOCAL_STORAGE_ALL_MEMBERS_KEY } from "../../CONST";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
+import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons/faUserPlus";
 
 type FormValuesType = {
   members: {
@@ -34,36 +38,53 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-white">メンバー登録</h2>
-      <form>
-        {fields.map((field, index) => (
-          <div key={field.id}>
-            <label className="text-white">名前_{index + 1}</label>
-            <div>
-              <input
-                {...register(`members.${index}.memberName`)}
-                className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline"
-              />
-              <button
-                type="button"
-                onClick={() => remove(index)}
-                className="primary"
-              >
-                削除
-              </button>
-            </div>
-          </div>
-        ))}
-        <button type="button" onClick={appendMember}>
-          メンバーを追加
-        </button>
+    <div className="py-8">
+      <div className="mb-8">
+        <h2 className="text-white font-bold">メンバー登録</h2>
+        <p className="text-white">すべてのメンバーを登録しよう！</p>
+      </div>
 
-        <div>
-          <button type="button" onClick={handleSubmit(onSubmit)}>
-            登録
+      <form className="flex flex-col gap-8">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
+            {fields.map((field, index) => (
+              <div key={field.id} className="flex gap-2 items-center">
+                <label htmlFor={`member_${index}`} className="text-white">
+                  メンバー{index + 1}
+                </label>
+                <input
+                  id={`member_${index}`}
+                  {...register(`members.${index}.memberName`)}
+                  className="px-1 py-1.5 text-sm rounded-md"
+                />
+                <button
+                  type="button"
+                  onClick={() => remove(index)}
+                  className="primary"
+                >
+                  <FontAwesomeIcon icon={faXmark} className="text-red" />
+                </button>
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={appendMember}
+            className="flex gap-2 justify-center items-center border border-blue bg-blue rounded-md text-white"
+          >
+            <FontAwesomeIcon icon={faPlus} />
+            <span>メンバーを追加</span>
           </button>
         </div>
+
+        <button
+          type="button"
+          onClick={handleSubmit(onSubmit)}
+          className="flex gap-2 justify-center items-center border border-green bg-green rounded-md text-white"
+        >
+          <FontAwesomeIcon icon={faUserPlus} />
+          <span>登録</span>
+        </button>
       </form>
     </div>
   );

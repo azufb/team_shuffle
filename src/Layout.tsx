@@ -3,8 +3,8 @@ import { Navigation } from "./Navigation";
 
 export const Layout = () => {
   return (
-    <div>
-      <h1>チームシャッフル！</h1>
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold text-white">チームシャッフル！</h1>
 
       {/* ナビゲーションメニュー */}
       <Navigation />
