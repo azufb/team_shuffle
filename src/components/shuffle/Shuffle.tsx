@@ -75,9 +75,7 @@ export const Shuffle = () => {
           headers={MembersTableHeaders}
           items={allMembers.map((member, index) => {
             return {
-              id: member.id,
-              memberName: member.memberName,
-              isInclude: member.isInclude,
+              ...member,
               action: (
                 <input
                   type="checkbox"
