@@ -15,7 +15,7 @@ type PropsType = {
 export const Table = ({ headers, items, caption }: PropsType) => {
   return (
     <table className="w-full border border-collapse">
-      <caption className="text-sm text-white">{caption}</caption>
+      <caption className="text-sm text-white mb-2">{caption}</caption>
       <TableHeader headers={headers} />
       <TableBody items={items} />
     </table>
