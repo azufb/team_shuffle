@@ -23,7 +23,7 @@ export const Shuffle = () => {
     allMembersJson != null ? JSON.parse(allMembersJson) : []
   );
 
-  const handleShuffle = () => {
+  const handleShuffle = (): void => {
     let slicedMembers: MemberInfoType[] = allMembers.slice();
     // isIncludeがfalseのものは省く
     slicedMembers = slicedMembers.filter((member) => member.isInclude === true);
@@ -49,13 +49,13 @@ export const Shuffle = () => {
     setTeamsInfo(teams);
   };
 
-  const deleteData = () => {
+  const deleteData = (): void => {
     localStorage.removeItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
     setAllMembers([]);
     setMembersCount("1");
   };
 
-  const handleChangeIsInclude = (targetIndex: number) => {
+  const handleChangeIsInclude = (targetIndex: number): void => {
     const before = allMembers.slice(0, targetIndex);
     const after = allMembers.slice(targetIndex + 1);
     const updated: MemberInfoType[] = [
