@@ -57,6 +57,7 @@ export const Shuffle = () => {
   const deleteData = (): void => {
     localStorage.removeItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
     setAllMembers([]);
+    setTeamsInfo([]);
     setMembersCount("1");
   };
 
