@@ -1,13 +1,21 @@
 const cacheName = "js13kPWA-v1";
-const urlsToCache = ["index.html"]
-
+const appShellFiles = [
+  "index.html",
+  "index.tsx",
+  "App.tsx",
+  "index.css",
+]
 self.addEventListener("install", (e) => {
-    e.waitUntil(
-        caches.open(cacheName).then((cache) => {
-            return cache.addAll(urlsToCache)
-        })
-    )
-})
+  console.log("[Service Worker] Install");
+
+  // 以下のコードが実行されるまでインストールされない
+  e.waitUntil(
+      caches.open(cacheName).then((cache) => {
+          console.log("[Service Worker] Caching all: app shell and content");
+          return cache.addAll(appShellFiles);
+        }),
+  )
+});
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(
