@@ -77,7 +77,7 @@ export const RegisterForm = () => {
             <button
               type="button"
               onClick={appendMember}
-              className="flex gap-2 justify-center items-center border border-blue bg-blue rounded-md text-white"
+              className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
             >
               <FontAwesomeIcon icon={faPlus} />
               <span>メンバーを追加</span>
@@ -87,7 +87,7 @@ export const RegisterForm = () => {
           <button
             type="button"
             onClick={handleSubmit(onSubmit)}
-            className="flex gap-2 justify-center items-center border border-green bg-green rounded-md text-white"
+            className="flex gap-2 justify-center items-center bg-green rounded-md text-white"
           >
             <FontAwesomeIcon icon={faUserPlus} />
             <span>登録</span>

@@ -5,6 +5,9 @@ import {
   MembersTableHeaders,
 } from "../../CONST";
 import { Table } from "../table";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons/faTrashCan";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShuffle } from "@fortawesome/free-solid-svg-icons/faShuffle";
 
 export type MemberInfoType = {
   id: number;
@@ -69,8 +72,8 @@ export const Shuffle = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="flex flex-col gap-8 py-8">
+      <div className="flex flex-col gap-4">
         <Table
           headers={MembersTableHeaders}
           items={allMembers.map((member, index) => {
@@ -87,25 +90,40 @@ export const Shuffle = () => {
           })}
           caption="※チェックを外すと、シャッフル対象から除外できます"
         />
-      </div>
-      <div>
-        <label>1チームの人数</label>
-        <input
-          type="number"
-          value={membersCount}
-          onChange={(e) => setMembersCount(e.target.value)}
-          className="shadow appearance-none border rounded focus:outline-none focus:shadow-outline"
-        />
-        <span>人</span>
+
+        <button
+          onClick={deleteData}
+          className="flex gap-2 justify-center items-center bg-red rounded-md text-white"
+        >
+          <FontAwesomeIcon icon={faTrashCan} />
+          <span>データ削除</span>
+        </button>
       </div>
 
-      <button onClick={deleteData}>データ削除</button>
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-2 items-center">
+          <label className="text-white">1チームの人数</label>
+          <div className="flex gap-2 items-end">
+            <input
+              type="number"
+              value={membersCount}
+              onChange={(e) => setMembersCount(e.target.value)}
+              className="px-1 py-1.5 text-sm rounded-md"
+            />
+            <span className="text-white">人</span>
+          </div>
+        </div>
 
-      <div>
-        <button onClick={handleShuffle}>Shuffle</button>
+        <button
+          onClick={handleShuffle}
+          className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
+        >
+          <FontAwesomeIcon icon={faShuffle} />
+          <span>シャッフル</span>
+        </button>
       </div>
 
-      <ShuffleResult teams={teamsInfo} />
+      {teamsInfo.length >= 1 && <ShuffleResult teams={teamsInfo} />}
     </div>
   );
 };

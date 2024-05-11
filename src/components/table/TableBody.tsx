@@ -9,8 +9,8 @@ export const TableBody = ({ items }: TableBodyPropsType) => {
   return (
     <>
       <tbody className="text-white">
-        {items.map((item) => (
-          <tr>
+        {items.map((item, index) => (
+          <tr key={index}>
             <td className="border-2 border-sky text-center px-1 py-1.5">
               {item.id}
             </td>

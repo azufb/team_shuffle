@@ -7,8 +7,10 @@ export const TableHeader = ({ headers }: TableHeaderPropsType) => {
     <>
       <thead className="text-white">
         <tr>
-          {headers.map((header) => (
-            <th className="border-2 border-sky bg-sky">{header}</th>
+          {headers.map((header, index) => (
+            <th key={index} className="border-2 border-sky bg-sky">
+              {header}
+            </th>
           ))}
         </tr>
       </thead>
