@@ -1,3 +1,5 @@
+import { ShuffleResultTableHeaders } from "../../CONST";
+import { Table } from "../table";
 import { MemberInfoType } from "./Shuffle";
 
 type PropsType = {
@@ -9,23 +11,11 @@ export const ShuffleResult = ({ teams }: PropsType) => {
     <div>
       <h2>シャッフル結果</h2>
       <div>
-        {teams.map((team) => (
-          <table>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>名前</th>
-              </tr>
-            </thead>
-            <tbody>
-              {team.map((member, index) => (
-                <tr key={index}>
-                  <td>{member.id}</td>
-                  <td>{member.memberName}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {teams.map((team, index) => (
+          <>
+            <p>チーム{index + 1}</p>
+            <Table headers={ShuffleResultTableHeaders} items={team} />
+          </>
         ))}
       </div>
     </div>

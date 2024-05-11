@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { ShuffleResult } from "./ShuffleResult";
-import { LOCAL_STORAGE_ALL_MEMBERS_KEY } from "../../CONST";
+import {
+  LOCAL_STORAGE_ALL_MEMBERS_KEY,
+  MembersTableHeaders,
+} from "../../CONST";
+import { Table } from "../table";
 
 export type MemberInfoType = {
   id: number;
@@ -33,10 +37,12 @@ export const Shuffle = () => {
         );
       }
 
+      // メンバーが足りないところはその要素削除
       members = members.filter((member) => member !== undefined);
-
       teams = [...teams, members];
     }
+    // チームにメンバーがいないところはそのチームの要素は削除
+    teams = teams.filter((team) => team.length >= 1);
     setTeamsInfo(teams);
   };
 
@@ -65,30 +71,23 @@ export const Shuffle = () => {
   return (
     <div>
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>名前</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {allMembers.map((member, index) => (
-              <tr key={index}>
-                <td>{member.id}</td>
-                <td>{member.memberName}</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={member.isInclude}
-                    onChange={() => handleChangeIsInclude(index)}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Table
+          headers={MembersTableHeaders}
+          items={allMembers.map((member, index) => {
+            return {
+              id: member.id,
+              memberName: member.memberName,
+              isInclude: member.isInclude,
+              action: (
+                <input
+                  type="checkbox"
+                  checked={member.isInclude}
+                  onChange={() => handleChangeIsInclude(index)}
+                />
+              ),
+            };
+          })}
+        />
       </div>
       <div>
         <label>1チームの人数</label>
