@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ShuffleResult } from "./ShuffleResult";
 import {
   LOCAL_STORAGE_ALL_MEMBERS_KEY,
-  MembersTableHeaders,
+  MEMBERS_TABLE_HEADERS,
 } from "../../CONST";
 import { Table } from "../table";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons/faTrashCan";
@@ -75,7 +75,7 @@ export const Shuffle = () => {
     <div className="flex flex-col gap-8 py-8">
       <div className="flex flex-col gap-4">
         <Table
-          headers={MembersTableHeaders}
+          headers={MEMBERS_TABLE_HEADERS}
           items={allMembers.map((member, index) => {
             return {
               ...member,

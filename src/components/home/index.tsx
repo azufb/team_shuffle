@@ -18,13 +18,13 @@ export const Home = () => {
   const [allMemebers, setAllMembers] =
     useState<MemberInfoType[]>(parsedAllMembers);
 
-  const navigateRegisterPage = (): void => {
-    navigate(pathsObj.register);
-  };
-
   const deleteData = (): void => {
     localStorage.removeItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
     setAllMembers([]);
+  };
+
+  const navigatePage = (path: string): void => {
+    navigate(path);
   };
 
   return (
@@ -38,7 +38,7 @@ export const Home = () => {
           </p>
           <button
             type="button"
-            onClick={navigateRegisterPage}
+            onClick={() => navigatePage(pathsObj.register)}
             className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
           >
             <span>メンバー登録</span>
@@ -46,14 +46,25 @@ export const Home = () => {
           </button>
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
-          <MembersList allMembers={allMemebers} />
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-4">
+            <MembersList allMembers={allMemebers} />
+            <button
+              onClick={deleteData}
+              className="flex gap-2 justify-center items-center bg-red rounded-md text-white"
+            >
+              <FontAwesomeIcon icon={faTrashCan} />
+              <span>データ削除</span>
+            </button>
+          </div>
+
           <button
-            onClick={deleteData}
-            className="flex gap-2 justify-center items-center bg-red rounded-md text-white"
+            type="button"
+            onClick={() => navigatePage(pathsObj.shuffle)}
+            className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
           >
-            <FontAwesomeIcon icon={faTrashCan} />
-            <span>データ削除</span>
+            <span>シャッフルする</span>
+            <FontAwesomeIcon icon={faAngleRight} />
           </button>
         </div>
       )}
