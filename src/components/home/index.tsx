@@ -28,7 +28,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="py-8">
+    <div className="w-full md:w-1/2 py-8">
       {allMemebers.length === 0 ? (
         <div className="flex flex-col gap-4">
           <p className="text-white">
