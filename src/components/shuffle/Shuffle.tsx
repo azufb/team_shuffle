@@ -52,7 +52,7 @@ export const Shuffle = () => {
   const deleteData = () => {
     localStorage.removeItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
     setAllMembers([]);
-    setMembersCount("0");
+    setMembersCount("1");
   };
 
   const handleChangeIsInclude = (targetIndex: number) => {

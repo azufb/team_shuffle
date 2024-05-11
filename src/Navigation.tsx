@@ -21,6 +21,16 @@ export const Navigation = () => {
         </li>
         <li>
           <Link
+            to={pathsObj.register}
+            className={
+              currentPathName === pathsObj.register ? currentLinkStyle : ""
+            }
+          >
+            メンバー登録
+          </Link>
+        </li>
+        <li>
+          <Link
             to={pathsObj.shuffle}
             className={
               currentPathName === pathsObj.shuffle ? currentLinkStyle : ""

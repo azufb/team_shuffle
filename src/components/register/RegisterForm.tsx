@@ -4,30 +4,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons/faUserPlus";
-import { MembersList } from "../membersList/MembersList";
-import { useState } from "react";
 import { MemberInfoType } from "../shuffle/Shuffle";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { pathsObj } from "../../pathsObj";
+
+type InputType = {
+  memberName: string;
+};
 
 type FormValuesType = {
-  members: {
-    memberName: string;
-  }[];
+  members: InputType[];
 };
 
 export const RegisterForm = () => {
+  const navigate: NavigateFunction = useNavigate();
+  const initialMemberInput: InputType = { memberName: "" };
   const { register, handleSubmit, control, reset } = useForm<FormValuesType>({
     defaultValues: {
-      members: [{ memberName: "" }],
+      members: [initialMemberInput],
     },
   });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "members",
   });
-  const allMembersJson = localStorage.getItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
-  const [allMembers, setAllMembers] = useState<MemberInfoType[]>(
-    allMembersJson != null ? JSON.parse(allMembersJson) : []
-  );
 
   const onSubmit = (data: FormValuesType): void => {
     const registerData: MemberInfoType[] = data.members.map((member, index) => {
@@ -35,13 +35,9 @@ export const RegisterForm = () => {
     });
     const jsonArray: string = JSON.stringify(registerData);
     localStorage.setItem(LOCAL_STORAGE_ALL_MEMBERS_KEY, jsonArray);
-    setAllMembers(registerData);
 
     reset();
-  };
-
-  const appendMember = () => {
-    append({ memberName: "" });
+    navigate(pathsObj.home);
   };
 
   return (
@@ -51,7 +47,7 @@ export const RegisterForm = () => {
         <p className="text-white">すべてのメンバーを登録しよう！</p>
       </div>
       <div className="flex flex-col gap-8 ">
-        <form className="flex flex-col gap-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-4">
               {fields.map((field, index) => (
@@ -76,7 +72,7 @@ export const RegisterForm = () => {
             </div>
             <button
               type="button"
-              onClick={appendMember}
+              onClick={() => append(initialMemberInput)}
               className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
             >
               <FontAwesomeIcon icon={faPlus} />
@@ -85,16 +81,14 @@ export const RegisterForm = () => {
           </div>
 
           <button
-            type="button"
-            onClick={handleSubmit(onSubmit)}
+            type="submit"
+            onClick={() => onSubmit}
             className="flex gap-2 justify-center items-center bg-green rounded-md text-white"
           >
             <FontAwesomeIcon icon={faUserPlus} />
             <span>登録</span>
           </button>
         </form>
-
-        {allMembers.length >= 1 && <MembersList allMembers={allMembers} />}
       </div>
     </div>
   );
