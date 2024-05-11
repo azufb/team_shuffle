@@ -1,7 +1,7 @@
 const cacheName = "js13kPWA-v1";
 const appShellFiles = [
   "index.html",
-  "index.tsx",
+  "main.tsx",
   "App.tsx",
   "index.css",
 ]
