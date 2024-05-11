@@ -72,7 +72,7 @@ export const Shuffle = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 py-8">
+    <div className="w-full md:w-1/2 flex flex-col gap-8 py-8">
       <div className="flex flex-col gap-4">
         <Table
           headers={MEMBERS_TABLE_HEADERS}

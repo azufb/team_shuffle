@@ -41,7 +41,7 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div className="py-8">
+    <div className="w-full md:w-1/2 py-8">
       <div className="mb-4">
         <h2 className="text-white font-bold">メンバー登録</h2>
         <p className="text-white">すべてのメンバーを登録しよう！</p>
