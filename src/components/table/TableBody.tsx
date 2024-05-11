@@ -8,12 +8,20 @@ export type TableBodyPropsType = {
 export const TableBody = ({ items }: TableBodyPropsType) => {
   return (
     <>
-      <tbody>
+      <tbody className="text-white">
         {items.map((item) => (
           <tr>
-            <td>{item.id}</td>
-            <td>{item.memberName}</td>
-            {item.action !== null && <td>{item.action}</td>}
+            <td className="border-2 border-sky text-center px-1 py-1.5">
+              {item.id}
+            </td>
+            <td className="border-2 border-sky px-1 py-1.5">
+              {item.memberName}
+            </td>
+            {item.action != null && (
+              <td className="border-2 border-sky text-center px-1 py-1.5">
+                {item.action}
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

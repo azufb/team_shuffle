@@ -9,11 +9,13 @@ export type ItemActionType = {
 type PropsType = {
   headers: string[];
   items: (MemberInfoType & ItemActionType)[];
+  caption?: string;
 };
 
-export const Table = ({ headers, items }: PropsType) => {
+export const Table = ({ headers, items, caption }: PropsType) => {
   return (
-    <table>
+    <table className="w-full border border-collapse">
+      <caption className="text-sm text-white">{caption}</caption>
       <TableHeader headers={headers} />
       <TableBody items={items} />
     </table>
