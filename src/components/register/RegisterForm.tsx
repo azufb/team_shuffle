@@ -31,7 +31,7 @@ export const RegisterForm = () => {
 
   const onSubmit = (data: FormValuesType): void => {
     const registerData: MemberInfoType[] = data.members.map((member, index) => {
-      return { id: index, memberName: member.memberName, isInclude: true };
+      return { id: index + 1, memberName: member.memberName, isInclude: true };
     });
     const jsonArray: string = JSON.stringify(registerData);
     localStorage.setItem(LOCAL_STORAGE_ALL_MEMBERS_KEY, jsonArray);
