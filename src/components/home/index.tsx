@@ -8,8 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons/faTrashCan";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../buttons/Button";
+import { Modal } from "../modal/Modal";
 
 export const Home = () => {
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState<boolean>(false);
   const navigate: NavigateFunction = useNavigate();
   const allMembersJson: string | null = localStorage.getItem(
     LOCAL_STORAGE_ALL_MEMBERS_KEY
@@ -19,9 +21,14 @@ export const Home = () => {
   const [allMemebers, setAllMembers] =
     useState<MemberInfoType[]>(parsedAllMembers);
 
+  const openModal = (): void => {
+    setIsConfirmModalOpen(true);
+  };
+
   const deleteData = (): void => {
     localStorage.removeItem(LOCAL_STORAGE_ALL_MEMBERS_KEY);
     setAllMembers([]);
+    setIsConfirmModalOpen(false);
   };
 
   const navigatePage = (path: string): void => {
@@ -49,9 +56,39 @@ export const Home = () => {
           </Button>
         </div>
       ) : (
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-4">
-            <MembersList allMembers={allMemebers} />
+        <>
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
+              <MembersList allMembers={allMemebers} />
+              <Button
+                onClick={openModal}
+                className="flex gap-2 justify-center items-center bg-red rounded-md text-white"
+              >
+                <>
+                  <FontAwesomeIcon icon={faTrashCan} />
+                  <span>データ削除</span>
+                </>
+              </Button>
+            </div>
+
+            <Button
+              type="button"
+              onClick={() => navigatePage(pathsObj.shuffle)}
+              className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
+            >
+              <>
+                <span>シャッフルする</span>
+                <FontAwesomeIcon icon={faAngleRight} />
+              </>
+            </Button>
+          </div>
+
+          {/** 確認モーダル */}
+          <Modal
+            isOpen={isConfirmModalOpen}
+            title="データ削除確認"
+            content="データを削除しますがよろしいでしょうか？"
+          >
             <Button
               onClick={deleteData}
               className="flex gap-2 justify-center items-center bg-red rounded-md text-white"
@@ -61,19 +98,8 @@ export const Home = () => {
                 <span>データ削除</span>
               </>
             </Button>
-          </div>
-
-          <Button
-            type="button"
-            onClick={() => navigatePage(pathsObj.shuffle)}
-            className="flex gap-2 justify-center items-center bg-blue rounded-md text-white"
-          >
-            <>
-              <span>シャッフルする</span>
-              <FontAwesomeIcon icon={faAngleRight} />
-            </>
-          </Button>
-        </div>
+          </Modal>
+        </>
       )}
     </div>
   );
